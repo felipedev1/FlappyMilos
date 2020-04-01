@@ -1,0 +1,82 @@
+*{
+    box-sizing: border-box;
+}
+@font-face{
+    font-family: 'Pixel';
+    src: url('../fonts/Pixel.ttf');
+}
+[wm-flappy]{
+    position: relative;
+    border: 5px solid dodgerblue;
+    height: 700px;
+    width: 1200px;
+    margin: 15px;
+    background-color: deepskyblue;
+    overflow: hidden;
+    background-image: url(../imgs/milospnggif.gif);
+    background-repeat: repeat(2);
+    background-size: 50%;
+}
+.passaro{
+    position: absolute;
+    width: 80px;
+    border-radius: 20px;
+    left: calc(50% - 30px);
+}
+.par-de-barreiras{
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.barreira{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.barreira .borda{
+    height: 30px;
+    width: 130px;
+    background: linear-gradient(90deg, #639301, #A5E82E);
+    border: solid 2px #000;
+}
+.barreira .corpo{
+    height: 40px;
+    width: 110px;
+    background: linear-gradient(90deg, #639301, #A5E82E);
+    border-left: solid 2px #000;
+    border-right: #000 2px solid;
+}
+.progresso{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 70px;
+    font-family: Pixel;
+    z-index: 100;
+}
+.game-over {
+    position: absolute;
+    font-size: 45px;
+    /* display: flex; */
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;    
+    color: red;
+    font-weight: bold;
+    display: none;
+
+}
+.game-over p{
+    background-color: gray;
+    border: solid 5px black;
+    padding: 10px;
+}
+.game-over p span{
+    background-color: black;
+    color: white;
+    padding: 3px;
+}
