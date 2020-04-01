@@ -62,13 +62,14 @@
     font-size: 45px;
     /* display: flex; */
     height: 100%;
+    width: 100%;
     justify-content: center;
     align-items: center;
     flex-direction: column;    
     color: red;
     font-weight: bold;
     display: none;
-
+    z-index: 3;
 }
 .game-over p{
     background-color: gray;
