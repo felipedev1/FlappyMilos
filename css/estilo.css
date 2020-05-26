@@ -11,6 +11,12 @@ body {
     background-color: #0D262D;
     color: #fff;
     height: 100%;
+    -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
 }
 
 .conteudo {
