@@ -59,7 +59,7 @@
 .passaro{
     position: absolute;
     width: 80px;
-    border-radius: 45%;
+    border-radius: 40%;
     left: calc(50% - 30px);
 }
 .par-de-barreiras{

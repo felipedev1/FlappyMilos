@@ -43,7 +43,7 @@ function ParDeBarreiras(altura, abertura, x) {
 // const b = new ParDeBarreiras(700, 200, 800)
 // document.querySelector('[wm-flappy]').appendChild(b.elemento)
 
-function Barreiras(altura, largura, abertura, espaco, notificarPonto ) {
+function Barreiras(altura, largura, abertura, espaco, notificarPonto) {
     this.pares = [
         new ParDeBarreiras(altura, abertura, largura),
         new ParDeBarreiras(altura, abertura, largura + espaco),
@@ -72,15 +72,15 @@ function Passaro(alturaJogo) {
     let voando = false
 
     this.elemento = novoElemento('img', 'passaro')
-    
+
     this.getY = () => parseInt(this.elemento.style.bottom.split('px')[0])
     this.setY = y => this.elemento.style.bottom = `${y}px`
-    
+
     window.onkeydown = e => voando = true
     window.onkeyup = e => voando = false
     window.ontouchstart = e => voando = true
     window.ontouchend = e => voando = false
-    
+
     this.animar = () => {
         this.elemento.src = voando ? 'imgs/milosVoaAlto.png' : 'imgs/milosAbaixa.png'
         const novoY = this.getY() + (voando ? 8 : -5)
@@ -136,7 +136,7 @@ function FlappyBird() {
     const progresso = new Progresso()
     const barreiras = new Barreiras(altura, largura, 230, 400, () => progresso.atualizarPontos(++pontos))
     const passaro = new Passaro(altura)
-    
+
     areaDoJogo.appendChild(progresso.elemento)
     areaDoJogo.appendChild(passaro.elemento)
     barreiras.pares.forEach(par => areaDoJogo.appendChild(par.elemento))
@@ -148,12 +148,12 @@ function FlappyBird() {
             audio.play()
             if (colidiu(passaro, barreiras)) {
                 clearInterval(temporizador)
-                if(parseInt(progresso.elemento.textContent) > parseInt(localStorage.record)){
-                    localStorage.setItem('record', progresso.elemento.textContent )
+                if (parseInt(progresso.elemento.textContent) > parseInt(localStorage.record)) {
+                    localStorage.setItem('record', progresso.elemento.textContent)
                 }
                 audio.pause()
                 audio.currentTime = 0
-                setTimeout(()=> {
+                setTimeout(() => {
                     while (areaDoJogo.firstChild) {
                         areaDoJogo.removeChild(areaDoJogo.firstChild);
                     }
@@ -181,8 +181,11 @@ document.getElementById('start').onclick = () => {
     body.removeChild(menu)
     body.style.cursor = 'none'
     body.appendChild(areaDoJogo)
-    setTimeout(()=> {
-        new FlappyBird().start()
-    }, 300)
+    new FlappyBird().start()
 }
-record.innerHTML = localStorage.record || 0
+if(localStorage.record){
+    record.innerHTML = localStorage.record
+} else {
+    localStorage.setItem('record', '0')
+    record.innerHTML = 0
+}
