@@ -176,6 +176,9 @@ const areaDoJogo = document.createElement('div')
 const wmFlappy = document.createAttribute('wm-flappy')
 const record = document.getElementById('record')
 areaDoJogo.setAttributeNode(wmFlappy)
+if (window.matchMedia("(max-width: 980px)").matches) {
+    areaDoJogo.style.height = '50vh'
+}
 
 document.getElementById('start').onclick = () => {
     body.removeChild(menu)

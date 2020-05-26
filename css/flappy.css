@@ -56,12 +56,14 @@
     background-repeat: repeat(2);
     background-size: 50%;
 }
+
 .passaro{
     position: absolute;
     width: 80px;
     border-radius: 40%;
     left: calc(50% - 30px);
 }
+
 .par-de-barreiras{
     position: absolute;
     top: 0px;
@@ -95,28 +97,4 @@
     font-size: 70px;
     font-family: Pixel;
     z-index: 100;
-}
-.game-over {
-    position: absolute;
-    font-size: 45px;
-    /* display: flex; */
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;    
-    color: red;
-    font-weight: bold;
-    display: none;
-    z-index: 3;
-}
-.game-over p{
-    background-color: gray;
-    border: solid 5px black;
-    padding: 10px;
-}
-.game-over p span{
-    background-color: black;
-    color: white;
-    padding: 3px;
 }
