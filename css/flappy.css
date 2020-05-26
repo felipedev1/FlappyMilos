@@ -1,15 +1,54 @@
 *{
     box-sizing: border-box;
+    margin: 0;
 }
 @font-face{
     font-family: 'Pixel';
     src: url('../fonts/Pixel.ttf');
 }
+
+.menu {
+    position: relative;
+    border: 5px solid dodgerblue;
+    height: 350px;
+    width: 600px;
+    margin: 15px;
+    background-color: #4e4e4e;
+    font-size: 2rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.menu button {
+    color: black;
+    background-color: chartreuse;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border: 3px solid #006600;
+    border-radius: 15px;
+    padding: 10px;
+    cursor: pointer;
+    transition: padding, 0.5s;
+}
+
+.menu #record {
+    font-size: 2.6rem;
+    color: #eee;
+}
+
+.menu button:hover {
+    padding: 15px;
+}
+
 [wm-flappy]{
     position: relative;
     border: 5px solid dodgerblue;
-    height: 700px;
-    width: 1200px;
+    height: 100vh;
+    width: 100vw;
     margin: 15px;
     background-color: deepskyblue;
     overflow: hidden;
@@ -20,7 +59,7 @@
 .passaro{
     position: absolute;
     width: 80px;
-    border-radius: 20px;
+    border-radius: 45%;
     left: calc(50% - 30px);
 }
 .par-de-barreiras{

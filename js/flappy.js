@@ -29,7 +29,6 @@ function ParDeBarreiras(altura, abertura, x) {
     this.sortearAbertura = () => {
         const alturaSuperior = Math.random() * (altura - abertura)
         const alturaInferior = altura - abertura - alturaSuperior
-        console.log(alturaSuperior, abertura, alturaInferior)
         this.superior.setAltura(alturaSuperior)
         this.inferior.setAltura(alturaInferior)
     }
@@ -128,12 +127,6 @@ function colidiu(passaro, barreiras) {
     return colidiu
 }
 
-function gameOver(){
-    document.querySelectorAll('.game-over').forEach(div => {
-        div.style.display = 'flex'
-    })
-}
-
 function FlappyBird() {
     let pontos = 0
     let velocidade = 20
@@ -143,25 +136,53 @@ function FlappyBird() {
     const progresso = new Progresso()
     const barreiras = new Barreiras(altura, largura, 230, 400, () => progresso.atualizarPontos(++pontos))
     const passaro = new Passaro(altura)
-
+    
     areaDoJogo.appendChild(progresso.elemento)
     areaDoJogo.appendChild(passaro.elemento)
     barreiras.pares.forEach(par => areaDoJogo.appendChild(par.elemento))
 
     this.start = () => {
-        while(pontos > 5) {
-            velocidade = velocidade - 5
-        }
         const temporizador = setInterval(() => {
             barreiras.animar()
             passaro.animar()
+            audio.play()
             if (colidiu(passaro, barreiras)) {
                 clearInterval(temporizador)
-                pontos = 0
-                velocidade = 20
-                gameOver()
+                if(parseInt(progresso.elemento.textContent) > parseInt(localStorage.record)){
+                    localStorage.setItem('record', progresso.elemento.textContent )
+                }
+                audio.pause()
+                audio.currentTime = 0
+                setTimeout(()=> {
+                    while (areaDoJogo.firstChild) {
+                        areaDoJogo.removeChild(areaDoJogo.firstChild);
+                    }
+                    body.removeChild(areaDoJogo)
+                    record.innerHTML = localStorage.record || 0
+                    body.appendChild(menu)
+                    body.style.cursor = 'initial'
+                }, 700)
             }
         }, velocidade);
     }
 }
-new FlappyBird().start()
+
+const audio = new Audio('audio/dotaMusic.mp3')
+audio.volume = 0.2
+
+const menu = document.getElementById('menu')
+const body = document.querySelector('body')
+const areaDoJogo = document.createElement('div')
+const wmFlappy = document.createAttribute('wm-flappy')
+const record = document.getElementById('record')
+areaDoJogo.setAttributeNode(wmFlappy)
+
+document.getElementById('start').onclick = () => {
+    body.removeChild(menu)
+    body.style.cursor = 'none'
+    body.appendChild(areaDoJogo)
+    setTimeout(()=> {
+        new FlappyBird().start()
+    }, 300)
+}
+record.innerHTML = localStorage.record || 0
